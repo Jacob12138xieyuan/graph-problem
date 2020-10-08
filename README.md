@@ -86,11 +86,11 @@ def connectedGraph(arrays):
     return result
 ```
 ## Friend circle
-Input: 
-[[1,1,0],
- [1,1,0],
- [0,0,1]]
-Output: 2
+Input: <br>
+[[1,1,0], <br>
+ [1,1,0],<br>
+ [0,0,1]]<br>
+Output: 2<br>
 Explanation:The 0th and 1st students are direct friends, so they are in a friend circle. 
 The 2nd student himself is in a friend circle. So return 2.
 ```
