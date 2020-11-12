@@ -2,6 +2,7 @@
 
 ## Topological sorting (course prerequisites)
 ```
+prerequisites = [[1,0],[2,0],[3,1],[3,2]]
 class Solution(object):
     def findOrder(self, numCourses, prerequisites):
         # topological_sorted_order
