@@ -1,5 +1,41 @@
 # graph-problem
 
+## Topological sorting (course prerequisites)
+```
+class Solution(object):
+    def findOrder(self, numCourses, prerequisites):
+        # topological_sorted_order
+        result = []
+        
+        in_degree = {} # {0: 0, 1: 1, 2: 1, 3 : 2}
+        for num in range(numCourses):
+            in_degree[num] = 0
+        
+        adj_list = {} # {0: [1, 2], 1: [3], 2: [3]}
+        for i in range(len(prerequisites)):
+            in_degree[prerequisites[i][0]] += 1
+            if prerequisites[i][1] in adj_list: # src course
+                adj_list[prerequisites[i][1]].append(prerequisites[i][0])
+            else:
+                adj_list[prerequisites[i][1]] = [prerequisites[i][0]]
+
+        # Queue for maintainig list of nodes that have 0 in-degree, less in degreemeans less pre-re
+        q = deque([key for key in in_degree if in_degree[key] == 0])
+        
+        while q:
+            node = q.popleft()
+            result.append(node) # store 0 in-degree
+            
+            if node in adj_list:
+                for neighbor in adj_list[node]:
+                    in_degree[neighbor] -= 1 # decreament in degree of neighbor
+                    
+                    if in_degree[neighbor] == 0:
+                        q.append(neighbor)
+        return result if len(result) == numCourses else [] # when some course is disconnected with others
+```
+
+
 ## Undirectional graph DFS (leetcode friend circle problem)
 ```
 arrays = [['a','b','c'], ['b','e'],['d','e','f'],['x','y'],['z','y']]
